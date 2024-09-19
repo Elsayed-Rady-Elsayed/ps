@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+int temp = 0;
+void trianglePrint(int n) {
+    if (n < 0)
+        return;
+    else
+        for (int i = 0; i < n; i++) {
+            cout << "*";
+        }
+    cout << endl;
+    trianglePrint(n - 1);
+}
+
+
+int main() {
+    trianglePrint(5);
+	return 0;
+}
