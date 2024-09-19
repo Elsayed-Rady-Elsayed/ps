@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+void avgForEachRow(int arr[][5],int r) {
+	int sum = 0;
+	for (int i = 0; i < r; i++) {
+		for (int j = 0; j < 5; j++) {
+			sum += arr[i][j];
+		}
+		cout << sum / 5<<" ";
+		sum = 0;
+	}
+}
+int main() {
+	int arr[5][5];
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			cin >> arr[i][j];
+		}
+	}
+	avgForEachRow(arr, 4);
+	return 0;
+}
