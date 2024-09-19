@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+int main() {
+	const int arrSize = 10;
+	int maxCount = 0;
+	int mostFreq;
+	int arr[arrSize] = { 1,2,3,4,5,6,2,2,9,10 };
+	for (int i = 0; i < arrSize; i++) {
+		int count = 0;
+		for (int j = 0; j < arrSize; j++) {
+			if (arr[i] == arr[j]) {
+				count++;
+			}
+		}
+		if (count > maxCount) {
+			maxCount = count;
+			mostFreq = arr[i];
+		}
+	}
+	cout << mostFreq << " occured " << maxCount << endl;
+	return 0;
+}
