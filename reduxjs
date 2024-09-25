@@ -1,0 +1,65 @@
+console.log(Redux);
+console.log(ReduxThunk);
+
+const action = {
+  type: "withdraw",
+};
+
+const getProducts = () => {
+  return async (dispatch) => {
+    const res = await fetch("https://fakestoreapi.com/products");
+    const data = await res.json();
+    dispatch({ type: "getP", payload: data });
+  };
+};
+
+const reducer = (state = 400, action) => {
+  switch (action.type) {
+    case "withdraw":
+      return state - 100;
+    case "deposite":
+      return state + 100;
+    default:
+      return state;
+  }
+};
+
+const userReducres = (state = [], action) => {
+  switch (action.type) {
+    case "addUser":
+      return [...state, { name: "sayed", age: 23 }];
+    default:
+      return state;
+  }
+};
+
+const pReducres = (state = [], action) => {
+  switch (action.type) {
+    case "getP":
+      return [...state, ...action.payload];
+    case "addp":
+      return [...state, { name: "hh", title: "ddd" }];
+    default:
+      return state;
+  }
+};
+
+const appReducer = Redux.combineReducers({
+  banck: reducer,
+  user: userReducres,
+  product: pReducres,
+});
+
+// const store = Redux.createStore(reducer);
+
+const store = Redux.createStore(appReducer, Redux.applyMiddleware(ReduxThunk));
+
+store.dispatch(action);
+store.dispatch({ type: "addUser" });
+
+store.dispatch(getProducts());
+store.dispatch({ type: "addp" });
+
+store.subscribe(() => {
+  console.log(store.getState());
+});
